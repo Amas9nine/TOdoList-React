@@ -28,3 +28,21 @@
   height: 100vh;
   align-items: center;
 }
+@media (max-width:768px){
+  .App{
+    width: 95%;
+
+  }
+}
+/* @media (max-width:500px){
+  .App{
+    width: 4%;
+
+  }
+}
+@media (max-width:300px){
+  .App{
+    width: 95%;
+
+  }
+} */
