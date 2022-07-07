@@ -11,12 +11,19 @@ function App() {
 
   const [state, setState] = useState(todoArr)
 
+  const [isPending,setPending]=useState(true)
+
   console.log(state)
 
   useEffect(() => {
     localStorage.setItem('todo', JSON.stringify(state))
   }, [state])
 
+  useEffect(()=>{
+    setTimeout(()=>{
+      setPending(false)
+    },5000)
+  },[])
 
   const addNewTodo = (str) => {
     setState([...state, { text: str, status: false, id: Date.now() }])
@@ -29,12 +36,6 @@ function App() {
     setState(newArr)
   }
 
-  // const  editTodo=(id)=>{
-  //   const newArrEdit = state.filter((item)=>{
-  //     return item.id !== id
-  //   })
-  //   setState(newArrEdit)
-  // }
 
   const editTodo = (id) => {
     const newArrEdit = state((item) => {
@@ -68,6 +69,13 @@ function App() {
 
   }
 
+  if (isPending) {
+    return <div className='preloader'>
+<img  src='https://i.pinimg.com/originals/77/4f/36/774f3653848cb34c8d90f07771284d51.gif' alt='loader'/>
+    </div>
+  }
+  
+
   return (
     <div className="App">
 
@@ -81,15 +89,21 @@ function App() {
         <div className='todoItems'>
 
           {
-            state.map((item) =>
-              <Footer text={item.text}
-                checked={item.status}
-                id={item.id}
+            state.length
+              ?
+              state.map((item) =>
+                <Footer 
+                key={item.id}
+                text={item.text}
+                  checked={item.status}
+                  id={item.id}
 
-                onDelete={deleteTodo}
-                onEdit={editTodo}
-                onCheck={onCheck}
-                onEditText={onEditText} />)
+                  onDelete={deleteTodo}
+                  onEdit={editTodo}
+                  onCheck={onCheck}
+                  onEditText={onEditText} />)
+              :
+              <h1 className='add-todo'>please add todo</h1>
           }
 
 
