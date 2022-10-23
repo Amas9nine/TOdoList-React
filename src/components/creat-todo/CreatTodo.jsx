@@ -1,14 +1,16 @@
 
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { todoAction } from '../redux/todoSlice';
 import './creat-todo.css'
 
-function CreatTodo(props) {
-
+function CreatTodo() {
+	const dispatch = useDispatch()
 	const [inputValue, setInputValue] = useState("")
 
 	const FuncSubmitA = (event) => {
 		event.preventDefault()
-		props.addNew(inputValue)
+		dispatch(todoAction.addTodo(inputValue))
 		setInputValue('')
 	}
 
@@ -19,9 +21,7 @@ function CreatTodo(props) {
 
 	return (
 		<form onSubmit={FuncSubmitA}>
-			
 			<input value={inputValue} onChange={HandleValue} type="text" name="" placeholder='Enter todo here' id="firstButton" />
-
 			<input type="submit" value="submit" id='secondButton' />
 		</form>
 	)
