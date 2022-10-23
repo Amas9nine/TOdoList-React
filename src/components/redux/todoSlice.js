@@ -13,7 +13,6 @@ const todoSlice = createSlice({
 		deleteTodo: (state, action) => {
 			state.data = state.data.filter((item) => item.id !== action.payload)
 		},
-
 		checkTodo: (state, action) => {
 			const newArr = state.data.map((item) => {
 				if (item.id === action.payload) {
@@ -41,7 +40,10 @@ const todoSlice = createSlice({
 		setLoading: (state, action) => {
 			state.isLoading = action.payload
 		},
-		
+		todoItems: (state, action) => {
+
+		}
+
 	}
 })
 export const todoReducer = todoSlice.reducer

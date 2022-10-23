@@ -21,9 +21,7 @@ function CreatTodo() {
 
 	return (
 		<form onSubmit={FuncSubmitA}>
-
 			<input value={inputValue} onChange={HandleValue} type="text" name="" placeholder='Enter todo here' id="firstButton" />
-
 			<input type="submit" value="submit" id='secondButton' />
 		</form>
 	)

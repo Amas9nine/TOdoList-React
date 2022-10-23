@@ -2,10 +2,10 @@
 import './App.css';
 import { useEffect } from 'react';
 import Header from "./components/header/Header"
-import Footer from './components/footer/footer'
 import CreatTodo from './components/creat-todo/CreatTodo'
 import { useDispatch, useSelector } from 'react-redux';
 import { todoAction } from './components/redux/todoSlice';
+import Added from './components/added/Added';
 
 
 
@@ -31,22 +31,8 @@ function App() {
     <div className="App">
       <Header state={state} />
       <div className='todoBody'>
+        <Added />
         <CreatTodo />
-        <div className='todoItems'>
-          {
-            state.length
-              ?
-              state.map((item) =>
-                <Footer
-                  key={item.id}
-                  text={item.text}
-                  checked={item.status}
-                  id={item.id}
-                />)
-              :
-              <h1 className='add-todo'>please add todo</h1>
-          }
-        </div>
       </div>
     </div>
   );
